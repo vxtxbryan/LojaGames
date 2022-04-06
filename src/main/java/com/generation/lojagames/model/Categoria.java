@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="tb_categoria")
 public class Categoria {
 
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produto;
 	
@@ -30,6 +31,7 @@ public class Categoria {
 	private Long id;
 	
 	@NotBlank(message = "O atributo Descrição é obrigatório")
+	@Size(max = 50)
 	private String tipo;
 
 	
